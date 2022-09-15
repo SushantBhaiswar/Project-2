@@ -30,7 +30,7 @@ const createInterns = async function (req, res) {
     if (!collegeNames) return res.status(404).send({ status: false, msg: "college name is invalid" })
 
     collegeId = collegeNames._id
-    let data = { name, email, mobile, collegeId, collegeName, isDeleted }
+    let data = { name, email, mobile, collegeId,  isDeleted }
 
     const internData = await internModels.create(data);
 
