@@ -30,7 +30,8 @@ const createcollegedocument = async (req, res) => {
         res.status(201).send({ Status: true, Data: createdata })
 
     } catch (error) {
-        res.status(500).send({ Status: false, Message: error.Message })
+        console.log(error.Message )
+        res.status(500).send({ Status: false, message: error.Message })
 
     }
 }
@@ -43,14 +44,13 @@ const getcollegedetail = async (req, res) => {
 
         if (!validation.isValid(collegeName)) return res.status(400).send({ status: true, Message: "Please Enter College name" })
 
-        let findnameindb = await collegemodel.findOne({  name: collegeName } )
+        let findnameindb = await collegemodel.findOne({ name: collegeName })
         if (!findnameindb) return res.status(404).send({ status: true, Message: "College Name not found please enter valid name" })
-
-
+       
         let findintern = await internmodel.find({ collegeId: findnameindb._id })
 
-        if(findintern.length > 0)findnameindb.interns = findintern
-        if(findintern.length == 0)  findnameindb.interns = "Intern not Found"
+        if (findintern.length > 0) findnameindb.interns = findintern
+        if (findintern.length == 0) findnameindb.interns = "Intern not Found"
 
         let newobj = { name: findnameindb.name, fullName: findnameindb.fullName, logoLink: findnameindb.logoLink, interns: findnameindb.interns }
 

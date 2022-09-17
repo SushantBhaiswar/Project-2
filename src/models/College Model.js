@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const moment = require('moment')
 
-
 const collegeschema = new mongoose.Schema({
     name: {
         type: String,
