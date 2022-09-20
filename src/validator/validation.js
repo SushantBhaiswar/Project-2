@@ -18,7 +18,6 @@ const isValidEmail = function (value) {
     return true;
 }
 
-
 const isValidMobileNumber = function (value) {
     if ((/^(\+\d{1,3}[- ]?)?\d{10}$/.test(value))) {
        return  true;
